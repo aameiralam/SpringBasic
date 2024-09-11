@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Demon Book | Summon Demon</title>
+</head>
+<body>
+<h1> Summoning the Demon </h1>
+<div>
+    <form method="post" th:object="${demon}" th:action="@{/demon/add}">
+    <label for="name">Name:</label>
+    <input id="name" type ="text" placeholder="Name" th:field="${demon.name}">
+        <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"> </div>
+
+    <label for="height">Height:</label>
+    <input id="height" type ="text" placeholder="Height" th:field="${demon.height}">
+        <div style="color:red" th:if="${#fields.hasErrors('height')}" th:errors="*{height}"> </div>
+
+    <label for="weight">Weight:</label>
+    <input id="weight" type ="text" placeholder="Weight" th:field="${demon.weight}">
+        <div style="color:red" th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}"> </div>
+
+    <label for="description">Description:</label>
+    <input id="description" type ="text" placeholder="Description" th:field="${demon.description}">
+        <div style="color:red" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"> </div>
+
+    <input type= "submit" value = "Summon the Demon">
+    </form>
+</div>
+</body>
+</html>
