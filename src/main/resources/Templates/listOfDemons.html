@@ -6,6 +6,7 @@
 </head>
 <body>
 <h1> DEMON LIST </h1>
+<a th:href="@{/demon/add}"> SUMMON THE NEW DEMON </a>
 <div th:each = "demon:${demon}">
     <ul>
         <li>
@@ -16,6 +17,13 @@
         </li>
         <li>
             <p th:text="${demon.getWeight()}"></p>
+        </li>
+        <li>
+            <a th:href="@{'/demon/edit/' + ${demon.id}}"> Edit this Demon </a>
+        </li>
+
+        <li>
+            <a th:href="@{'/demon/delete/' + ${demon.id}}"> DELETE THE DEMON </a>
         </li>
     </ul>
 

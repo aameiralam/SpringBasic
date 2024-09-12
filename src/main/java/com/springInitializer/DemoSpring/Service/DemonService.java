@@ -14,4 +14,6 @@ public interface DemonService {
 
         Demon getDemonById(Long id);
 
+        void deleteDemonById(Long id);
+
 }

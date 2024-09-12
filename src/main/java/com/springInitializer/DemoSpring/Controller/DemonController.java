@@ -20,25 +20,26 @@ public class DemonController {
 
     @GetMapping("/Hello")
     //all of them return String, it returns html, so it should return string.
-    public String hello(){
+    public String hello() {
         return "Hello";
     }
 
     @GetMapping("/")
-    public String displayAllDemons(Model model){
+    public String displayAllDemons(Model model) {
         List<Demon> demon = demonService.getAllDemons();
-        model.addAttribute("demon",demon);
+        model.addAttribute("demon", demon);
         return "listOfDemons";
     }
 
     @GetMapping("/add")
-    public String addDemon(Model model){
+    public String addDemon(Model model) {
         model.addAttribute("demon", new Demon());
         return "addDemon";
     }
+
     @PostMapping("/add")
-    public String addDemon(@ModelAttribute("demon") @Valid Demon demon, Errors errors){
-        if(errors.hasErrors()){
+    public String addDemon(@ModelAttribute("demon") @Valid Demon demon, Errors errors) {
+        if (errors.hasErrors()) {
             return "addDemon";
         }
         demonService.saveDemon(demon);
@@ -52,16 +53,27 @@ public class DemonController {
         model.addAttribute("demon", demon);
         return "editDemon";
     }
-        @PostMapping("/edit/{id}")
-        public String updateDemon(@PathVariable Long id, @ModelAttribute("demon") @Valid Demon demon, Errors errors ){
-        if(errors.hasErrors()){
+
+    @PostMapping("/edit/{id}")
+    public String updateDemon(@PathVariable Long id, @ModelAttribute("demon") @Valid Demon demon, Errors errors) {
+        if (errors.hasErrors()) {
             return "editDemon";
         }
         demonService.updateDemon(demon, id);
         return "redirect:/demon/";
+    }
+
+        @GetMapping("/delete/{id}")
+        public String deleteDemon(@PathVariable Long id){
+            demonService.deleteDemonById(id);
+            return "redirect:/demon/";
+
+        }
+
 
     }
 
 
 
-}
+
+
